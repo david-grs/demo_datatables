@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
-  var underlyings = $('#underlyings').DataTable();
+  var underlyings = $('#underlyings').DataTable({
+    "order": [0, 'asc'],
+  });
   var socket = new WebSocket("ws://localhost:8080/bla");
   
   socket.onopen = function() {
