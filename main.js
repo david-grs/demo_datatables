@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var fx_underlyings = []; // list of all FX underlyings, for completion purposes
   var socket = new WebSocket("ws://localhost:8080/bla");
 
   socket.onopen = function() {
@@ -33,20 +34,27 @@ $(document).ready(function() {
       "order": [0, 'asc'],
   });
   */
-  var underlyings = $('#underlyings').DataTable({
-      "order": [0, 'asc']
+  var grid_otc = $('#otc_underlyings').DataTable({
+    "order": [0, 'asc']
   });
 
-  $('#underlyings tbody').on( 'click', 'tr', function () {
-    $(this).toggleClass('selected info');
+  $('#otc_underlyings tbody').on( 'click', 'tr', function () {
   });
 
   socket.onmessage = function(msg) {
     console.log("received: " + msg.data);
 
-    ul = JSON.parse(msg.data);
-    for (var i = 0; i < ul.length; i++) {
-      underlyings.row.add(ul[i]).draw(false);
+    var msg = JSON.parse(msg.data);
+    fx_underlyings = msg["fx_underlyings"];
+    var otc = msg["otc_underlyings"]
+
+    $(".fx_underlying").autocomplete({
+      source: fx_underlyings,
+      delay: 0
+    });
+
+    for (var i = 0; i < otc.length; i++) {
+      grid_otc.row.add(otc[i]).draw(false);
     }
   };
 });

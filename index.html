@@ -7,17 +7,19 @@
 
     <title>OTCInline</title>
 
-    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <!--link type="text/css" href="css/jquery.dataTables.min.css" rel="stylesheet"-->
-    <link type="text/css" href="css/dataTables.editor.min.css" rel="stylesheet">
-    <link type="text/css" href="main.css" rel="stylesheet">
+    <link type="text/css" href="css/dataTables.editor.min.css" rel="stylesheet" />
+    <link type="text/css" href="css/jquery-ui.min.css" rel="stylesheet" />
+    <link type="text/css" href="main.css" rel="stylesheet" />
     
     <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="js/dataTables.editor.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
   </head>
 
@@ -31,10 +33,21 @@
     </nav>
 
     <div class="container">
-      <table id="underlyings" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="sr-only" for="srcUnderlying">Source Underlying</label>
+          <input type="text" class="form-control fx_underlying" id="srcUnderlying" placeholder="Source Underlying">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="dstUnderlying">Destination Underlying</label>
+          <input type="text" class="form-control fx_underlying" id="dstUnderlying" placeholder="Destination Underlying">
+        </div>
+        <button class="btn btn-primary">Add</button>
+      </form>
+
+      <table id="otc_underlyings" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
         <thead><tr><th>Source Underlying</th><th>Destination Underlying</th></tr></thead>
       </table>
     </div>
-
   </body>
 </html>
