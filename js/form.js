@@ -27,4 +27,13 @@ $(document).ready(function()
       }
     });
   });
+
+
+  $("#btnAddOTC").click(function() 
+  {
+    // TODO: send to server
+
+    $("#srcUnderlying").val("");
+    $("#dstUnderlying").val("");
+  });
 });
