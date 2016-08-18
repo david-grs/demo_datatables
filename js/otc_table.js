@@ -5,9 +5,17 @@ $(document).ready(function()
     "order": [0, 'asc']
   });
 
-  $('#otc_underlyings tbody').on( 'click', 'tr', function () 
+  $('#otc_underlyings tbody').on( 'click', 'tr', function ()
   {
-
+    if ($(this).hasClass('info'))
+    {
+      $(this).removeClass('info');
+    }
+    else 
+    {
+      $('#otc_underlyings tr.info').removeClass('info');
+      $(this).addClass('info');
+    }
   });
 
   $(this).on("on_otc_underlyings", function (e, underlyings) 
