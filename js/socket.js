@@ -4,12 +4,24 @@ $(document).ready(function() {
   socket.onopen = function() 
   {
     socket.send("get_conf");
-  };
+    
+    $("#textCubicStatus")
+      .text("Connected")
+      .removeClass()
+      .addClass("text-success"); 
+  }
 
-  socket.onerror = function(err) { alert(err); }
-  socket.onclose = function(err) { alert("closed"); }
+  socket.onerror = function(e) { socket.close(); }
 
-  socket.onmessage = function(msg) 
+  socket.onclose = function(e)
+  {
+    $("#textCubicStatus")
+      .text("Disconnected")
+      .removeClass()
+      .addClass("text-danger");
+  }
+
+  socket.onmessage = function(msg)
   {
     console.log("received: " + msg.data);
 
