@@ -32,8 +32,8 @@
       </div>
     </nav>
 
-    <div class="container">
-      <form class="form-inline">
+    <div class="container main-container">
+      <form class="form-inline" id="formAddOTC">
         <div class="form-group">
           <label class="sr-only" for="srcUnderlying">Source Underlying</label>
           <input type="text" class="form-control fx_underlying" id="srcUnderlying" placeholder="Source Underlying">
@@ -42,7 +42,7 @@
           <label class="sr-only" for="dstUnderlying">Destination Underlying</label>
           <input type="text" class="form-control fx_underlying" id="dstUnderlying" placeholder="Destination Underlying">
         </div>
-        <button class="btn btn-primary">Add</button>
+        <button class="btn btn-primary" id="btnAddOTC" disabled="disabled">Add</button>
       </form>
 
       <table id="otc_underlyings" class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">

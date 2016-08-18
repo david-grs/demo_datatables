@@ -2,7 +2,8 @@ $(document).ready(function() {
   var fx_underlyings = []; // list of all FX underlyings, for completion purposes
   var socket = new WebSocket("ws://localhost:8080/bla");
 
-  socket.onopen = function() {
+  socket.onopen = function() 
+  {
     socket.send("get_conf");
   };
 
@@ -34,26 +35,46 @@ $(document).ready(function() {
       "order": [0, 'asc'],
   });
   */
-  var grid_otc = $('#otc_underlyings').DataTable({
+  var grid_otc = $('#otc_underlyings').DataTable(
+  {
     "order": [0, 'asc']
   });
 
-  $('#otc_underlyings tbody').on( 'click', 'tr', function () {
+  $('#otc_underlyings tbody').on( 'click', 'tr', function () 
+  {
   });
 
-  socket.onmessage = function(msg) {
+  socket.onmessage = function(msg) 
+  {
     console.log("received: " + msg.data);
 
     var msg = JSON.parse(msg.data);
     fx_underlyings = msg["fx_underlyings"];
     var otc = msg["otc_underlyings"]
 
-    $(".fx_underlying").autocomplete({
+    $(".fx_underlying").autocomplete(
+    {
       source: fx_underlyings,
       delay: 0
+    })
+    .keyup(function() 
+    {
+      if (fx_underlyings.indexOf($("#srcUnderlying").val()) == -1
+          || fx_underlyings.indexOf($("#dstUnderlying").val()) == -1
+          || $("#srcUnderlying").val() == $("#dstUnderlying").val()) 
+      {
+        $("#formAddOTC").addClass("has-error");
+        $("#btnAddOTC").attr("disabled", "disabled");
+      }
+      else 
+      {
+        $("#formAddOTC").removeClass("has-error");
+        $("#btnAddOTC").removeAttr("disabled");
+      }
     });
 
-    for (var i = 0; i < otc.length; i++) {
+    for (var i = 0; i < otc.length; i++) 
+    {
       grid_otc.row.add(otc[i]).draw(false);
     }
   };
