@@ -4,6 +4,12 @@ $(document).ready(function()
   {
     "order": [0, 'asc']
   });
+    
+  $('#items').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": "data.json"
+  });
 
   $('#underlyings tbody').on( 'click', 'tr', function ()
   {
