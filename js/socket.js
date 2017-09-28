@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var socket = new WebSocket("ws://localhost:8080/bla");
+  var socket = new WebSocket("ws://localhost:8080/");
 
   socket.onopen = function() 
   {
@@ -27,10 +27,10 @@ $(document).ready(function() {
 
     json = JSON.parse(msg.data);
     var fx_underlyings = json["fx_underlyings"];
-    var otc_underlyings = json["otc_underlyings"];
+    var underlyings = json["underlyings"];
 
     $(document).trigger("on_fx_underlyings",  [fx_underlyings]);
-    $(document).trigger("on_otc_underlyings", [otc_underlyings]);
+    $(document).trigger("on_underlyings", [underlyings]);
   };
 });
 
