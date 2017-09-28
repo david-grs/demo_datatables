@@ -17,19 +17,19 @@ $(document).ready(function()
           || fx_underlyings.indexOf($("#dstUnderlying").val()) == -1
           || $("#srcUnderlying").val() == $("#dstUnderlying").val()) 
       {
-        $("#formAddOTC").addClass("has-error");
-        $("#btnAddOTC").attr("disabled", "disabled");
+        $("#formAdd").addClass("has-error");
+        $("#btnAdd").attr("disabled", "disabled");
       }
       else 
       {
-        $("#formAddOTC").removeClass("has-error");
-        $("#btnAddOTC").removeAttr("disabled");
+        $("#formAdd").removeClass("has-error");
+        $("#btnAdd").removeAttr("disabled");
       }
     });
   });
 
 
-  $("#btnAddOTC").click(function() 
+  $("#btnAdd").click(function() 
   {
     // TODO: send to server
 
