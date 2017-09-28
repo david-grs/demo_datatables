@@ -15,7 +15,7 @@ data = {
 
 
 def get_row(i):
-    return [ "Airi" + str(i), "Satou", "Accountant", "Tokyo", "28th Nov 08", "$162,700" ]
+    return { "0": "Airi" + str(i), "1": "Satou", "2": "Accountant", "3": "Tokyo", "4": "28th Nov 08", "5": "$162,700", "DT_RowId": "row_" + str(i) }
 
 for i in xrange(0, 100):
     data["data"].append(get_row(i))
@@ -34,7 +34,7 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             print draw
             
             data["draw"] = draw
-            data["data"].insert(0, get_row(draw))
+            data["data"].insert(0, get_row(1000 + draw))
             self.wfile.write(json.dumps(data))
         else:
             SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
