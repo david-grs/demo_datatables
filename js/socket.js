@@ -5,7 +5,7 @@ $(document).ready(function() {
   {
     socket.send("get_conf");
     
-    $("#textCubicStatus")
+    $("#textStatus")
       .text("Connected")
       .removeClass()
       .addClass("text-success"); 
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   socket.onclose = function(e)
   {
-    $("#textCubicStatus")
+    $("#textStatus")
       .text("Disconnected")
       .removeClass()
       .addClass("text-danger");
