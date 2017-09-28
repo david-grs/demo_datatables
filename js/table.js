@@ -11,6 +11,9 @@ $(document).ready(function()
         "processing": true,
         "serverSide": true,
         "ajax": "data.json",
+        colReorder: {
+            realtime: false
+        },
         "rowCallback": function( row, data ) {
             if ( $.inArray(data.DT_RowId, selected) !== -1 ) {
                 $(row).addClass('selected');
