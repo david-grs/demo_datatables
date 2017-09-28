@@ -1,20 +1,20 @@
 $(document).ready(function() 
 {
-  var fx_underlyings = []; // list of all FX underlyings
-
-  $(this).on("on_fx_underlyings", function (e, data) 
-  {
-    fx_underlyings = data;
+  var underlyings = []; 
     
-    $(".fx_underlying").autocomplete(
+  $(this).on("on_underlyings", function (e, data) 
+  {
+    underlyings = data;
+    
+    $(".underlying").autocomplete(
     {
-      source: fx_underlyings,
+      source: underlyings,
       delay: 0
     })
     .keyup(function() 
     {
-      if (fx_underlyings.indexOf($("#srcUnderlying").val()) == -1
-          || fx_underlyings.indexOf($("#dstUnderlying").val()) == -1
+      if (underlyings.indexOf($("#srcUnderlying").val()) == -1
+          || underlyings.indexOf($("#dstUnderlying").val()) == -1
           || $("#srcUnderlying").val() == $("#dstUnderlying").val()) 
       {
         $("#formAdd").addClass("has-error");

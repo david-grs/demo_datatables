@@ -26,11 +26,9 @@ $(document).ready(function() {
     console.log("received: " + msg.data);
 
     json = JSON.parse(msg.data);
-    var fx_underlyings = json["fx_underlyings"];
-    var underlyings = json["underlyings"];
-
-    $(document).trigger("on_fx_underlyings",  [fx_underlyings]);
-    $(document).trigger("on_underlyings", [underlyings]);
+    
+    if (json["message"] == "item");
+        $(document).trigger("on_item",  json);
   };
 });
 
