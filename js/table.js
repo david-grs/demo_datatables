@@ -5,11 +5,15 @@ $(document).ready(function()
     "order": [0, 'asc']
   });
     
-  $('#items').DataTable( {
+  var tableItems = $('#items').DataTable( {
         "processing": true,
         "serverSide": true,
         "ajax": "data.json"
   });
+    
+  setInterval( function () {
+    tableItems.ajax.reload(null, false);
+  }, 1000 );
 
   $('#underlyings tbody').on( 'click', 'tr', function ()
   {

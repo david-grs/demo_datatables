@@ -8,33 +8,17 @@ import json
 
 data = {
   "draw": 1,
-  "recordsTotal": 57,
-  "recordsFiltered": 57,
-  "data": [
-    [
-      "Airi",
-      "Satou",
-      "Accountant",
-      "Tokyo",
-      "28th Nov 08",
-      "$162,700"
-    ],
-    [
-      "Angelica",
-      "Ramos",
-      "Chief Executive Officer (CEO)",
-      "London",
-      "9th Oct 09",
-      "$1,200,000"
-    ],
-    [
-      "Ashton",
-      "Cox",
-      "Junior Technical Author",
-      "San Francisco",
-      "12th Jan 09",
-      "$86,000"
-    ]]}
+  "recordsTotal": 1000,
+  "recordsFiltered": 1000,
+  "data": []
+}
+
+
+def get_row(i):
+    return [ "Airi" + str(i), "Satou", "Accountant", "Tokyo", "28th Nov 08", "$162,700" ]
+
+for i in xrange(0, 100):
+    data["data"].append(get_row(i))
 
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
@@ -50,11 +34,12 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             print draw
             
             data["draw"] = draw
+            data["data"].insert(0, get_row(draw))
             self.wfile.write(json.dumps(data))
         else:
             SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
 Handler = ServerHandler
-httpd = SocketServer.TCPServer(("", 8001), Handler)
+httpd = SocketServer.TCPServer(("", 8000), Handler)
 httpd.serve_forever()
 
