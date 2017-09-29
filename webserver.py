@@ -29,13 +29,16 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             
             i = self.path.find("draw=")
             j = self.path.find("&", i)
+            draw = int(self.path[i + 5 : j])            
             
-            draw = int(self.path[i + 5 : j])
-            print draw
+            i = self.path.find("callback=")
+            j = self.path.find("&", i)
+            jsonp = self.path[i + 9 : j]
             
             data["draw"] = draw
             data["data"].insert(0, get_row(1000 + draw))
-            self.wfile.write(json.dumps(data))
+            
+            self.wfile.write(jsonp + "(" + json.dumps(data) + ");")
         else:
             SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 

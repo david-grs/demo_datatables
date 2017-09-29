@@ -10,7 +10,11 @@ $(document).ready(function()
   var tableItems = $('#items').DataTable( {
         "processing": true,
         "serverSide": true,
-        "ajax": "data.json",
+        "ajax": {
+            "url": "http://localhost:8000/data.json",
+            "crossDomain": true,
+            "dataType": "jsonp"            
+        },
         colReorder: {
             realtime: false
         },
